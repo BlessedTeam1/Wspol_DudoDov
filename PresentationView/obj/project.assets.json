@@ -1,0 +1,175 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0-windows7.0": {
+      "BusinessLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessLogic.dll": {}
+        }
+      },
+      "Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Data.dll": {}
+        }
+      },
+      "PresentationModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/PresentationModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PresentationModel.dll": {}
+        }
+      },
+      "PresentationViewModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "BusinessLogic": "1.0.0",
+          "Data": "1.0.0",
+          "PresentationModel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PresentationViewModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PresentationViewModel.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BusinessLogic/1.0.0": {
+      "type": "project",
+      "path": "../BusinessLogic/BusinessLogic.csproj",
+      "msbuildProject": "../BusinessLogic/BusinessLogic.csproj"
+    },
+    "Data/1.0.0": {
+      "type": "project",
+      "path": "../Data/Data.csproj",
+      "msbuildProject": "../Data/Data.csproj"
+    },
+    "PresentationModel/1.0.0": {
+      "type": "project",
+      "path": "../PresentationModel/PresentationModel.csproj",
+      "msbuildProject": "../PresentationModel/PresentationModel.csproj"
+    },
+    "PresentationViewModel/1.0.0": {
+      "type": "project",
+      "path": "../PresentationViewModel/PresentationViewModel.csproj",
+      "msbuildProject": "../PresentationViewModel/PresentationViewModel.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0-windows7.0": [
+      "PresentationModel >= 1.0.0",
+      "PresentationViewModel >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\hamon\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\WSPOLBIEGI\\ZAD0\\PresentationView\\PresentationView.csproj",
+      "projectName": "PresentationView",
+      "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationView\\PresentationView.csproj",
+      "packagesPath": "C:\\Users\\hamon\\.nuget\\packages\\",
+      "outputPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationView\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\hamon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "projectReferences": {
+            "D:\\WSPOLBIEGI\\ZAD0\\PresentationModel\\PresentationModel.csproj": {
+              "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationModel\\PresentationModel.csproj"
+            },
+            "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModel\\PresentationViewModel.csproj": {
+              "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModel\\PresentationViewModel.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

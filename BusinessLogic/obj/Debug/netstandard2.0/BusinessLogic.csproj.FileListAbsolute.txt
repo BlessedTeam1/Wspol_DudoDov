@@ -1,0 +1,13 @@
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\bin\Debug\netstandard2.0\BusinessLogic.deps.json
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\bin\Debug\netstandard2.0\BusinessLogic.dll
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\bin\Debug\netstandard2.0\BusinessLogic.pdb
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\bin\Debug\netstandard2.0\Data.dll
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\bin\Debug\netstandard2.0\Data.pdb
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.csproj.AssemblyReference.cache
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.AssemblyInfoInputs.cache
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.AssemblyInfo.cs
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.csproj.CoreCompileInputs.cache
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\Business.CF5D6E35.Up2Date
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.dll
+D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.pdb

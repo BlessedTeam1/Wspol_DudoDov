@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>PresentationView</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PresentationViewModel\PresentationViewModel.csproj" />
+    <ProjectReference Include="..\PresentationModel\PresentationModel.csproj" />
+  </ItemGroup>
+</Project>

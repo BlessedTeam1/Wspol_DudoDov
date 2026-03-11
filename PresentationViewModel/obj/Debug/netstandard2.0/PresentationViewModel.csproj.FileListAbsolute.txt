@@ -1,0 +1,17 @@
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\PresentationViewModel.deps.json
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\PresentationViewModel.dll
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\PresentationViewModel.pdb
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\BusinessLogic.dll
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\Data.dll
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\PresentationModel.dll
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\BusinessLogic.pdb
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\Data.pdb
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\bin\Debug\netstandard2.0\PresentationModel.pdb
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\PresentationViewModel.csproj.AssemblyReference.cache
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\PresentationViewModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\PresentationViewModel.AssemblyInfoInputs.cache
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\PresentationViewModel.AssemblyInfo.cs
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\PresentationViewModel.csproj.CoreCompileInputs.cache
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\Presenta.E317AD4C.Up2Date
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\PresentationViewModel.dll
+D:\WSPOLBIEGI\ZAD0\PresentationViewModel\obj\Debug\netstandard2.0\PresentationViewModel.pdb

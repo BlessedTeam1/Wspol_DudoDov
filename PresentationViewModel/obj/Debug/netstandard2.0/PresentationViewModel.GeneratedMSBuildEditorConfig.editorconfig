@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = PresentationViewModel
+build_property.ProjectDir = D:\WSPOLBIEGI\ZAD0\PresentationViewModel\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
