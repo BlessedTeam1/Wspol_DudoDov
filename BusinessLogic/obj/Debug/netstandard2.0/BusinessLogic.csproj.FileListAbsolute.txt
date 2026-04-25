@@ -11,3 +11,17 @@ D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.csproj.C
 D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\Business.CF5D6E35.Up2Date
 D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.dll
 D:\WSPOLBIEGI\ZAD0\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.pdb
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\bin\Debug\netstandard2.0\BusinessLogic.deps.json
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\bin\Debug\netstandard2.0\BusinessLogic.dll
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\bin\Debug\netstandard2.0\BusinessLogic.pdb
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\bin\Debug\netstandard2.0\Data.dll
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\bin\Debug\netstandard2.0\Data.pdb
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.AssemblyInfo.cs
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.sourcelink.json
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\Business.CF5D6E35.Up2Date
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.dll
+C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\obj\Debug\netstandard2.0\BusinessLogic.pdb

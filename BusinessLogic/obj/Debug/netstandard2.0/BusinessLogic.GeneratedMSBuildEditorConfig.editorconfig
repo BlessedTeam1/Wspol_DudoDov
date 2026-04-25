@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = BusinessLogic
-build_property.ProjectDir = D:\WSPOLBIEGI\ZAD0\BusinessLogic\
+build_property.ProjectDir = C:\Users\witod\source\repos\Wspol_DudoDov\BusinessLogic\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false

@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Castle.Core/5.1.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Castle.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.CodeCoverage/17.5.0": {
         "type": "package",
         "compile": {
@@ -285,6 +301,18 @@
           "build/netcoreapp3.1/Microsoft.TestPlatform.TestHost.props": {}
         }
       },
+      "Moq/4.20.72": {
+        "type": "package",
+        "dependencies": {
+          "Castle.Core": "5.1.1"
+        },
+        "compile": {
+          "lib/net6.0/Moq.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Moq.dll": {}
+        }
+      },
       "MSTest.TestAdapter/3.0.2": {
         "type": "package",
         "build": {
@@ -375,6 +403,32 @@
           }
         }
       },
+      "System.Diagnostics.EventLog/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/System.Diagnostics.EventLog.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Diagnostics.EventLog.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          },
+          "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
       "System.Reflection.Metadata/1.6.0": {
         "type": "package",
         "compile": {
@@ -414,6 +468,10 @@
       "PresentationModel/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "BusinessLogic": "1.0.0",
+          "Data": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/PresentationModel.dll": {}
         },
@@ -439,6 +497,30 @@
     }
   },
   "libraries": {
+    "Castle.Core/5.1.1": {
+      "sha512": "rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
+      "type": "package",
+      "path": "castle.core/5.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ASL - Apache Software Foundation License.txt",
+        "CHANGELOG.md",
+        "LICENSE",
+        "castle-logo.png",
+        "castle.core.5.1.1.nupkg.sha512",
+        "castle.core.nuspec",
+        "lib/net462/Castle.Core.dll",
+        "lib/net462/Castle.Core.xml",
+        "lib/net6.0/Castle.Core.dll",
+        "lib/net6.0/Castle.Core.xml",
+        "lib/netstandard2.0/Castle.Core.dll",
+        "lib/netstandard2.0/Castle.Core.xml",
+        "lib/netstandard2.1/Castle.Core.dll",
+        "lib/netstandard2.1/Castle.Core.xml",
+        "readme.txt"
+      ]
+    },
     "Microsoft.CodeCoverage/17.5.0": {
       "sha512": "6FQo0O6LKDqbCiIgVQhJAf810HSjFlOj7FunWaeOGDKxy8DAbpHzPk4SfBTXz9ytaaceuIIeR6hZgplt09m+ig==",
       "type": "package",
@@ -695,6 +777,23 @@
         "lib/netcoreapp3.1/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll",
         "microsoft.testplatform.testhost.17.5.0.nupkg.sha512",
         "microsoft.testplatform.testhost.nuspec"
+      ]
+    },
+    "Moq/4.20.72": {
+      "sha512": "EA55cjyNn8eTNWrgrdZJH5QLFp2L43oxl1tlkoYUKIE9pRwL784OWiTXeCV5ApS+AMYEAlt7Fo03A2XfouvHmQ==",
+      "type": "package",
+      "path": "moq/4.20.72",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net462/Moq.dll",
+        "lib/net6.0/Moq.dll",
+        "lib/netstandard2.0/Moq.dll",
+        "lib/netstandard2.1/Moq.dll",
+        "moq.4.20.72.nupkg.sha512",
+        "moq.nuspec",
+        "readme.md"
       ]
     },
     "MSTest.TestAdapter/3.0.2": {
@@ -1026,6 +1125,37 @@
         "nuget.frameworks.nuspec"
       ]
     },
+    "System.Diagnostics.EventLog/6.0.0": {
+      "sha512": "lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "type": "package",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Diagnostics.EventLog.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Diagnostics.EventLog.dll",
+        "lib/net461/System.Diagnostics.EventLog.xml",
+        "lib/net6.0/System.Diagnostics.EventLog.dll",
+        "lib/net6.0/System.Diagnostics.EventLog.xml",
+        "lib/netcoreapp3.1/System.Diagnostics.EventLog.dll",
+        "lib/netcoreapp3.1/System.Diagnostics.EventLog.xml",
+        "lib/netstandard2.0/System.Diagnostics.EventLog.dll",
+        "lib/netstandard2.0/System.Diagnostics.EventLog.xml",
+        "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll",
+        "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.dll",
+        "runtimes/win/lib/net6.0/System.Diagnostics.EventLog.xml",
+        "runtimes/win/lib/netcoreapp3.1/System.Diagnostics.EventLog.Messages.dll",
+        "runtimes/win/lib/netcoreapp3.1/System.Diagnostics.EventLog.dll",
+        "runtimes/win/lib/netcoreapp3.1/System.Diagnostics.EventLog.xml",
+        "system.diagnostics.eventlog.6.0.0.nupkg.sha512",
+        "system.diagnostics.eventlog.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Reflection.Metadata/1.6.0": {
       "sha512": "COC1aiAJjCoA5GBF+QKL2uLqEBew4JsCkQmoHKbN3TlOZKa2fKLz5CpiRQKDz0RsAOEGsVKqOD5bomsXq/4STQ==",
       "type": "package",
@@ -1075,23 +1205,24 @@
       "MSTest.TestAdapter >= 3.0.2",
       "MSTest.TestFramework >= 3.0.2",
       "Microsoft.NET.Test.Sdk >= 17.5.0",
+      "Moq >= 4.20.72",
       "PresentationViewModel >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hamon\\.nuget\\packages\\": {}
+    "C:\\Users\\witod\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModelTest\\PresentationViewModelTest.csproj",
+      "projectUniqueName": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationViewModelTest\\PresentationViewModelTest.csproj",
       "projectName": "PresentationViewModelTest",
-      "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModelTest\\PresentationViewModelTest.csproj",
-      "packagesPath": "C:\\Users\\hamon\\.nuget\\packages\\",
-      "outputPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModelTest\\obj\\",
+      "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationViewModelTest\\PresentationViewModelTest.csproj",
+      "packagesPath": "C:\\Users\\witod\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationViewModelTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hamon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\witod\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1105,14 +1236,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\WSPOLBIEGI\\ZAD0\\BusinessLogic\\BusinessLogic.csproj": {
-              "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\BusinessLogic\\BusinessLogic.csproj"
+            "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\BusinessLogic\\BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\BusinessLogic\\BusinessLogic.csproj"
             },
-            "D:\\WSPOLBIEGI\\ZAD0\\Data\\Data.csproj": {
-              "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\Data\\Data.csproj"
+            "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\Data\\Data.csproj"
             },
-            "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModel\\PresentationViewModel.csproj": {
-              "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModel\\PresentationViewModel.csproj"
+            "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationViewModel\\PresentationViewModel.csproj": {
+              "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationViewModel\\PresentationViewModel.csproj"
             }
           }
         }
@@ -1127,7 +1258,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net6.0": {
@@ -1144,6 +1275,10 @@
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.5.0, )"
+          },
+          "Moq": {
+            "target": "Package",
+            "version": "[4.20.72, )"
           }
         },
         "imports": [
@@ -1157,26 +1292,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

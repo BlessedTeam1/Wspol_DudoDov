@@ -28,6 +28,10 @@
       "PresentationModel/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "BusinessLogic": "1.0.0",
+          "Data": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/PresentationModel.dll": {}
         },
@@ -81,19 +85,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hamon\\.nuget\\packages\\": {}
+    "C:\\Users\\witod\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WSPOLBIEGI\\ZAD0\\PresentationView\\PresentationView.csproj",
+      "projectUniqueName": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationView\\PresentationView.csproj",
       "projectName": "PresentationView",
-      "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationView\\PresentationView.csproj",
-      "packagesPath": "C:\\Users\\hamon\\.nuget\\packages\\",
-      "outputPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationView\\obj\\",
+      "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationView\\PresentationView.csproj",
+      "packagesPath": "C:\\Users\\witod\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationView\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hamon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\witod\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -107,11 +111,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "D:\\WSPOLBIEGI\\ZAD0\\PresentationModel\\PresentationModel.csproj": {
-              "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationModel\\PresentationModel.csproj"
+            "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationModel\\PresentationModel.csproj": {
+              "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationModel\\PresentationModel.csproj"
             },
-            "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModel\\PresentationViewModel.csproj": {
-              "projectPath": "D:\\WSPOLBIEGI\\ZAD0\\PresentationViewModel\\PresentationViewModel.csproj"
+            "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationViewModel\\PresentationViewModel.csproj": {
+              "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationViewModel\\PresentationViewModel.csproj"
             }
           }
         }
@@ -126,7 +130,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net6.0-windows7.0": {
@@ -142,24 +146,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -168,7 +154,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
