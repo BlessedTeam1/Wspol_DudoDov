@@ -1,37 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Collections.ObjectModel;
-
 
 namespace Data
 {
-
     public abstract class DataAbsApi
     {
-        public abstract void AddBall(double Boardx, double Boardy, double r, double velX, double velY);
+        public abstract void AddBall(double boardX, double boardY, double r, double velX, double velY);
         public abstract void RemoveBall(Iballs ball);
-
         public abstract ObservableCollection<Iballs> GetBalls();
 
-        public static DataAbsApi CreateApi()
-        {
-            return new DataApi();
-        }
+        public static DataAbsApi CreateApi() => new DataApi();
     }
-
-
 
     internal class DataApi : DataAbsApi
     {
-        private ObservableCollection<Iballs> _balls = new ObservableCollection<Iballs>();
+        private readonly ObservableCollection<Iballs> _balls = new ObservableCollection<Iballs>();
+        private readonly Random _random = new Random();
 
-        private Random _random = new Random();
-
-        public override void AddBall(double Boardx, double Boardy, double r, double velX, double velY)
+        public override void AddBall(double boardX, double boardY, double r, double velX, double velY)
         {
-            double x = _random.NextDouble() * (Boardx - 2 * r);
-            double y = _random.NextDouble() * (Boardy - 2 * r);
+            double x = r + _random.NextDouble() * (boardX - 2 * r);
+            double y = r + _random.NextDouble() * (boardY - 2 * r);
 
             if (velX == 0 && velY == 0)
             {

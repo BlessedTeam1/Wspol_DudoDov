@@ -8,45 +8,36 @@ namespace PresentationModel
     public class ModelApi
     {
         private readonly LogicAbsApi _logicApi;
+        private double _logicWidth, _logicHeight;
+        private double _canvasWidth, _canvasHeight;
 
-       
         public ObservableCollection<BallModel> Balls { get; } = new ObservableCollection<BallModel>();
 
         public ModelApi(LogicAbsApi logicApi = null)
         {
-            
             _logicApi = logicApi ?? LogicAbsApi.CreateApi();
-
-            
-            _logicApi.GetBalls().CollectionChanged += LogicBalls_CollectionChanged;
+            _logicApi.GetBalls().CollectionChanged += OnLogicBallsChanged;
         }
 
-        public void Start(double width, double height, int count)
+        public void Start(double canvasWidth, double canvasHeight, int count)
         {
-            _logicApi.StartSimulation(width, height, count);
+            _canvasWidth = canvasWidth;
+            _canvasHeight = canvasHeight;
+            _logicWidth = canvasWidth;
+            _logicHeight = canvasHeight;
+            _logicApi.StartSimulation(_logicWidth, _logicHeight, count);
         }
 
-        public void Stop()
-        {
-            _logicApi.StopSimulation();
-        }
+        public void Stop() => _logicApi.StopSimulation();
 
-        
-        private void LogicBalls_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void OnLogicBallsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            
             if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
-            {
                 foreach (Iballs ball in e.NewItems)
-                {
-                    Balls.Add(new BallModel(ball)); 
-                }
-            }
-            
+                    Balls.Add(new BallModel(ball, _logicWidth, _logicHeight,
+                                                  _canvasWidth, _canvasHeight));
             else if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems != null)
-            {
-                Balls.Clear(); 
-            }
+                Balls.Clear();
         }
     }
 }

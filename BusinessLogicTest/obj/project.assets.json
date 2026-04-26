@@ -1170,19 +1170,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\witod\\.nuget\\packages\\": {}
+    "C:\\Users\\hamon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\BusinessLogicTest\\BusinessLogicTest.csproj",
+      "projectUniqueName": "D:\\WSPOLBIEGI\\ZAD1\\BusinessLogicTest\\BusinessLogicTest.csproj",
       "projectName": "BusinessLogicTest",
-      "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\BusinessLogicTest\\BusinessLogicTest.csproj",
-      "packagesPath": "C:\\Users\\witod\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\BusinessLogicTest\\obj\\",
+      "projectPath": "D:\\WSPOLBIEGI\\ZAD1\\BusinessLogicTest\\BusinessLogicTest.csproj",
+      "packagesPath": "C:\\Users\\hamon\\.nuget\\packages\\",
+      "outputPath": "D:\\WSPOLBIEGI\\ZAD1\\BusinessLogicTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\witod\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hamon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1196,11 +1196,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\BusinessLogic\\BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\BusinessLogic\\BusinessLogic.csproj"
+            "D:\\WSPOLBIEGI\\ZAD1\\BusinessLogic\\BusinessLogic.csproj": {
+              "projectPath": "D:\\WSPOLBIEGI\\ZAD1\\BusinessLogic\\BusinessLogic.csproj"
             },
-            "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\Data\\Data.csproj"
+            "D:\\WSPOLBIEGI\\ZAD1\\Data\\Data.csproj": {
+              "projectPath": "D:\\WSPOLBIEGI\\ZAD1\\Data\\Data.csproj"
             }
           }
         }
@@ -1215,7 +1215,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net6.0": {
@@ -1249,12 +1249,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

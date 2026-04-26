@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1hwIqxqTbic=",
+  "dgSpecHash": "+ra8M5TgLlA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\witod\\source\\repos\\Wspol_DudoDov\\PresentationModel\\PresentationModel.csproj",
+  "projectFilePath": "D:\\WSPOLBIEGI\\ZAD1\\PresentationModel\\PresentationModel.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\witod\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\witod\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\hamon\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\hamon\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,18 +1,13 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using Data;
 using BusinessLogic;
 using PresentationModel;
-using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PresentationModelTest
 {
-    // ─────────────────────────────────────────────────────────────────────────────
-    // Pomocnicze fake'i
-    // ─────────────────────────────────────────────────────────────────────────────
-
     internal class FakeBall : Iballs
     {
         private double _x;
@@ -39,7 +34,7 @@ namespace PresentationModelTest
 
     internal class FakeLogicApi : LogicAbsApi
     {
-        private readonly ObservableCollection<Iballs> _balls = new();
+        private readonly ObservableCollection<Iballs> _balls = new ObservableCollection<Iballs>();
 
         public bool StartCalled { get; private set; }
         public bool StopCalled { get; private set; }
@@ -62,14 +57,9 @@ namespace PresentationModelTest
             StopCalled = true;
         }
 
-        // Pomocnicze metody do sterowania kolekcją w testach
         public void AddFakeBall(Iballs ball) => _balls.Add(ball);
         public void RemoveFakeBall(Iballs ball) => _balls.Remove(ball);
     }
-
-    // ─────────────────────────────────────────────────────────────────────────────
-    // Testy BallModel
-    // ─────────────────────────────────────────────────────────────────────────────
 
     [TestClass]
     public class BallModelTests
@@ -79,7 +69,6 @@ namespace PresentationModelTest
         {
             var ball = new FakeBall { R = 20 };
             var model = new BallModel(ball);
-
             Assert.AreEqual(40, model.Diameter);
         }
 
@@ -88,7 +77,6 @@ namespace PresentationModelTest
         {
             var ball = new FakeBall { X = 100, R = 15 };
             var model = new BallModel(ball);
-
             Assert.AreEqual(100 - 15, model.X);
         }
 
@@ -97,7 +85,6 @@ namespace PresentationModelTest
         {
             var ball = new FakeBall { Y = 200, R = 15 };
             var model = new BallModel(ball);
-
             Assert.AreEqual(200 - 15, model.Y);
         }
 
@@ -121,8 +108,7 @@ namespace PresentationModelTest
             };
 
             ball.X = 100;
-
-            Assert.IsTrue(fired, "PropertyChanged nie zostało wywołane po zmianie X");
+            Assert.IsTrue(fired);
         }
 
         [TestMethod]
@@ -138,8 +124,7 @@ namespace PresentationModelTest
             };
 
             ball.Y = 150;
-
-            Assert.IsTrue(fired, "PropertyChanged nie zostało wywołane po zmianie Y");
+            Assert.IsTrue(fired);
         }
 
         [TestMethod]
@@ -151,7 +136,6 @@ namespace PresentationModelTest
             int count = 0;
             model.PropertyChanged += (s, e) => count++;
 
-            // Brak zmiany – nie ustawiamy żadnej właściwości ball
             Assert.AreEqual(0, count);
         }
 
@@ -160,9 +144,7 @@ namespace PresentationModelTest
         {
             var ball = new FakeBall { X = 50, R = 10 };
             var model = new BallModel(ball);
-
             ball.X = 80;
-
             Assert.AreEqual(80 - 10, model.X);
         }
 
@@ -171,22 +153,14 @@ namespace PresentationModelTest
         {
             var ball = new FakeBall { Y = 50, R = 10 };
             var model = new BallModel(ball);
-
             ball.Y = 120;
-
             Assert.AreEqual(120 - 10, model.Y);
         }
     }
 
-    // ─────────────────────────────────────────────────────────────────────────────
-    // Testy ModelApi
-    // ─────────────────────────────────────────────────────────────────────────────
-
     [TestClass]
     public class ModelApiTests
     {
-        // ── konstruktor ───────────────────────────────────────────────────────────
-
         [TestMethod]
         public void Constructor_WithoutArgument_CreatesInstance()
         {
@@ -208,16 +182,12 @@ namespace PresentationModelTest
             Assert.AreEqual(0, model.Balls.Count);
         }
 
-        // ── Start / Stop ──────────────────────────────────────────────────────────
-
         [TestMethod]
         public void Start_CallsLogicStartSimulation()
         {
             var fakeLogic = new FakeLogicApi();
             var model = new ModelApi(fakeLogic);
-
             model.Start(800, 600, 5);
-
             Assert.IsTrue(fakeLogic.StartCalled);
         }
 
@@ -226,9 +196,7 @@ namespace PresentationModelTest
         {
             var fakeLogic = new FakeLogicApi();
             var model = new ModelApi(fakeLogic);
-
             model.Start(1024, 768, 10);
-
             Assert.AreEqual(1024, fakeLogic.LastBoardX);
             Assert.AreEqual(768, fakeLogic.LastBoardY);
             Assert.AreEqual(10, fakeLogic.LastCount);
@@ -239,22 +207,16 @@ namespace PresentationModelTest
         {
             var fakeLogic = new FakeLogicApi();
             var model = new ModelApi(fakeLogic);
-
             model.Stop();
-
             Assert.IsTrue(fakeLogic.StopCalled);
         }
-
-        // ── synchronizacja kolekcji ───────────────────────────────────────────────
 
         [TestMethod]
         public void Balls_AddsModelWhenLogicBallAdded()
         {
             var fakeLogic = new FakeLogicApi();
             var model = new ModelApi(fakeLogic);
-
             fakeLogic.AddFakeBall(new FakeBall());
-
             Assert.AreEqual(1, model.Balls.Count);
         }
 
@@ -264,8 +226,10 @@ namespace PresentationModelTest
             var fakeLogic = new FakeLogicApi();
             var model = new ModelApi(fakeLogic);
 
-            fakeLogic.AddFakeBall(new FakeBall { R = 20 });
+            // FIX: Initialize the board dimensions so ModelApi can compute scale correctly.
+            model.Start(800, 600, 0);
 
+            fakeLogic.AddFakeBall(new FakeBall { R = 20 });
             Assert.AreEqual(40, model.Balls[0].Diameter);
         }
 
@@ -274,11 +238,9 @@ namespace PresentationModelTest
         {
             var fakeLogic = new FakeLogicApi();
             var model = new ModelApi(fakeLogic);
-
             fakeLogic.AddFakeBall(new FakeBall());
             fakeLogic.AddFakeBall(new FakeBall());
             fakeLogic.AddFakeBall(new FakeBall());
-
             Assert.AreEqual(3, model.Balls.Count);
         }
 
@@ -293,8 +255,6 @@ namespace PresentationModelTest
             Assert.AreEqual(1, model.Balls.Count);
 
             fakeLogic.RemoveFakeBall(ball);
-
-            // Zgodnie z implementacją: Remove wywołuje Balls.Clear()
             Assert.AreEqual(0, model.Balls.Count);
         }
 
@@ -318,8 +278,7 @@ namespace PresentationModelTest
             };
 
             fakeLogic.AddFakeBall(new FakeBall());
-
-            Assert.IsTrue(raised, "CollectionChanged nie zostało wywołane po dodaniu kulki");
+            Assert.IsTrue(raised);
         }
 
         [TestMethod]
@@ -335,8 +294,7 @@ namespace PresentationModelTest
             model.Balls.CollectionChanged += (s, e) => raised = true;
 
             fakeLogic.RemoveFakeBall(ball);
-
-            Assert.IsTrue(raised, "CollectionChanged nie zostało wywołane po usunięciu kulki");
+            Assert.IsTrue(raised);
         }
     }
 }

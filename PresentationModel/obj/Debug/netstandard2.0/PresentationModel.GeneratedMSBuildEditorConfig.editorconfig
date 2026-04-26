@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = PresentationModel
-build_property.ProjectDir = C:\Users\witod\source\repos\Wspol_DudoDov\PresentationModel\
+build_property.ProjectDir = D:\WSPOLBIEGI\ZAD1\PresentationModel\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
