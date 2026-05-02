@@ -5,40 +5,38 @@ namespace Data
 {
     public abstract class DataAbsApi
     {
-        public abstract void AddBall(double boardX, double boardY, double r, double velX, double velY);
-        public abstract void RemoveBall(Iballs ball);
-        public abstract ObservableCollection<Iballs> GetBalls();
+        public abstract IBalls AddBall(double boardX, double boardY, double r, double mass, double velX = 0, double velY = 0);
+        public abstract void RemoveBall(IBalls ball);
+        public abstract ObservableCollection<IBalls> GetBalls();
 
         public static DataAbsApi CreateApi() => new DataApi();
     }
 
     internal class DataApi : DataAbsApi
     {
-        private readonly ObservableCollection<Iballs> _balls = new ObservableCollection<Iballs>();
+        private readonly ObservableCollection<IBalls> _balls = new ObservableCollection<IBalls>();
         private readonly Random _random = new Random();
 
-        public override void AddBall(double boardX, double boardY, double r, double velX, double velY)
+        public override IBalls AddBall(double boardX, double boardY, double r, double mass, double velX = 0, double velY = 0)
         {
             double x = r + _random.NextDouble() * (boardX - 2 * r);
             double y = r + _random.NextDouble() * (boardY - 2 * r);
 
             if (velX == 0 && velY == 0)
             {
-                velX = (_random.NextDouble() - 0.5) * 5;
-                velY = (_random.NextDouble() - 0.5) * 5;
+                double speed = 1.5 + _random.NextDouble() * 3.5;
+                double angle = _random.NextDouble() * 2 * Math.PI;
+                velX = speed * Math.Cos(angle);
+                velY = speed * Math.Sin(angle);
             }
 
-            _balls.Add(new Ball(x, y, r, velX, velY));
+            var ball = new Ball(x, y, r, mass, velX, velY);
+            _balls.Add(ball);
+            return ball;
         }
 
-        public override void RemoveBall(Iballs ball)
-        {
-            _balls.Remove(ball);
-        }
+        public override void RemoveBall(IBalls ball) => _balls.Remove(ball);
 
-        public override ObservableCollection<Iballs> GetBalls()
-        {
-            return _balls;
-        }
+        public override ObservableCollection<IBalls> GetBalls() => _balls;
     }
 }

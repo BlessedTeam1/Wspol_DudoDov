@@ -33,7 +33,7 @@ namespace PresentationModel
         private void OnLogicBallsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
-                foreach (Iballs ball in e.NewItems)
+                foreach (IBalls ball in e.NewItems)
                     Balls.Add(new BallModel(ball, _logicWidth, _logicHeight,
                                                   _canvasWidth, _canvasHeight));
             else if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems != null)
