@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Threading;
 using BusinessLogic;
 using Data;
 
@@ -8,6 +9,7 @@ namespace PresentationModel
     public class ModelApi
     {
         private readonly LogicAbsApi _logicApi;
+        private readonly SynchronizationContext _syncContext;
         private double _logicWidth, _logicHeight;
         private double _canvasWidth, _canvasHeight;
 
@@ -15,6 +17,7 @@ namespace PresentationModel
 
         public ModelApi(LogicAbsApi logicApi = null)
         {
+            _syncContext = SynchronizationContext.Current;
             _logicApi = logicApi ?? LogicAbsApi.CreateApi();
             _logicApi.GetBalls().CollectionChanged += OnLogicBallsChanged;
         }
@@ -32,12 +35,20 @@ namespace PresentationModel
 
         private void OnLogicBallsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
-                foreach (IBalls ball in e.NewItems)
-                    Balls.Add(new BallModel(ball, _logicWidth, _logicHeight,
-                                                  _canvasWidth, _canvasHeight));
-            else if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems != null)
-                Balls.Clear();
+            void Apply()
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
+                    foreach (IBalls ball in e.NewItems)
+                        Balls.Add(new BallModel(ball, _logicWidth, _logicHeight,
+                                                      _canvasWidth, _canvasHeight));
+                else if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems != null)
+                    Balls.Clear();
+            }
+
+            if (_syncContext != null && SynchronizationContext.Current != _syncContext)
+                _syncContext.Post(_ => Apply(), null);
+            else
+                Apply();
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using BusinessLogic;
 using Data;
@@ -7,38 +8,44 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogicTest
 {
-    internal class FakeBall : Iballs
+    internal class FakeBall : IBalls
     {
         public double X { get; set; }
         public double Y { get; set; }
         public double R { get; set; }
+        public double Mass { get; set; } = 1.0;
+        public double VelX { get; set; }
+        public double VelY { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged { add { } remove { } }
 
-        public void Move(double boardX, double boardY) { }
+        // Исправлено: добавлено имя переменной "token"
+        public void Start(CancellationToken token) { }
     }
 
     internal class FakeDataApi : DataAbsApi
     {
-        private readonly ObservableCollection<Iballs> _balls = new ObservableCollection<Iballs>();
+        private readonly ObservableCollection<IBalls> _balls = new ObservableCollection<IBalls>();
 
         public int AddBallCallCount { get; private set; }
         public int RemoveBallCallCount { get; private set; }
         public int GetBallsCallCount { get; private set; }
 
-        public override ObservableCollection<Iballs> GetBalls()
+        public override ObservableCollection<IBalls> GetBalls()
         {
             GetBallsCallCount++;
             return _balls;
         }
 
-        public override void AddBall(double boardX, double boardY, double r, double velX, double velY)
+        public override IBalls AddBall(double boardX, double boardY, double r, double mass, double velX = 0, double velY = 0)
         {
             AddBallCallCount++;
-            _balls.Add(new FakeBall { X = boardX / 2, Y = boardY / 2, R = r });
+            var ball = new FakeBall { X = boardX / 2, Y = boardY / 2, R = r };
+            _balls.Add(ball);
+            return ball;
         }
 
-        public override void RemoveBall(Iballs ball)
+        public override void RemoveBall(IBalls ball)
         {
             RemoveBallCallCount++;
             _balls.Remove(ball);
@@ -139,8 +146,8 @@ namespace BusinessLogicTest
         public void StartSimulation_RemovesAllExistingBalls()
         {
             var fakeData = new FakeDataApi();
-            fakeData.AddBall(800, 600, 15, 1, 1);
-            fakeData.AddBall(800, 600, 15, -1, -1);
+            fakeData.AddBall(800, 600, 15, 1, 1, 1);
+            fakeData.AddBall(800, 600, 15, 1, 1, -1);
 
             var logic = LogicAbsApi.CreateApi(fakeData);
             logic.StartSimulation(800, 600, 1);
@@ -208,4 +215,4 @@ namespace BusinessLogicTest
                 $"Expected GetBalls >= 1, got {fakeData.GetBallsCallCount}");
         }
     }
-}
+} // <-- Эта скобка была потеряна

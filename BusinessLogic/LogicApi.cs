@@ -24,7 +24,6 @@ namespace BusinessLogic
         private Task _simulationTask;
         private CancellationTokenSource _cancellationTokenSource;
 
-        // Sekcja krytyczna — wyłączny dostęp do listy kul podczas kroku symulacji
         private readonly SemaphoreSlim _gate = new SemaphoreSlim(1, 1);
 
         public LogicApi(DataAbsApi dataApi)
@@ -39,7 +38,7 @@ namespace BusinessLogic
 
         public override void StartSimulation(double boardX, double boardY, int ballCount)
         {
-            StopSimulation();
+            if (_simulationTask != null) return;
 
             var balls = _dataApi.GetBalls();
             while (balls.Count > 0)
@@ -48,14 +47,22 @@ namespace BusinessLogic
             var rnd = new Random();
             for (int i = 0; i < ballCount; i++)
             {
-                double r    = 10 + rnd.NextDouble() * 20;  // promień 10..30 px
-                double mass = r * r;                         // masa proporcjonalna do pola
+                double r    = 10 + rnd.NextDouble() * 20;
+                double mass = r * r;
                 _dataApi.AddBall(boardX, boardY, r, mass);
             }
 
             _cancellationTokenSource = new CancellationTokenSource();
-            _simulationTask = Task.Run(() =>
-                SimulationLoop(boardX, boardY, _cancellationTokenSource.Token));
+            var token = _cancellationTokenSource.Token;
+
+            // Запускаем многопоточность для каждого шара
+            foreach (var ball in _dataApi.GetBalls())
+            {
+                ball.Start(token);
+            }
+
+            // Таск для проверки коллизий и границ
+            _simulationTask = Task.Run(() => SimulationLoop(boardX, boardY, token));
         }
 
         public override void StopSimulation()
@@ -74,9 +81,8 @@ namespace BusinessLogic
                 try
                 {
                     var balls = _dataApi.GetBalls();
+                    CheckBoundaries(balls, boardX, boardY);
                     ResolveCollisions(balls);
-                    foreach (var ball in balls)
-                        ball.Move(boardX, boardY);
                 }
                 finally
                 {
@@ -85,6 +91,35 @@ namespace BusinessLogic
 
                 try { await Task.Delay(16, token).ConfigureAwait(false); }
                 catch (OperationCanceledException) { break; }
+            }
+        }
+
+        // Логика отскока от стен перенесена сюда (выполняем требование чеклиста)
+        private static void CheckBoundaries(ObservableCollection<IBalls> balls, double boardX, double boardY)
+        {
+            foreach (var ball in balls)
+            {
+                if (ball.X - ball.R <= 0)
+                {
+                    ball.X = ball.R;
+                    ball.VelX = Math.Abs(ball.VelX);
+                }
+                else if (ball.X + ball.R >= boardX)
+                {
+                    ball.X = boardX - ball.R;
+                    ball.VelX = -Math.Abs(ball.VelX);
+                }
+
+                if (ball.Y - ball.R <= 0)
+                {
+                    ball.Y = ball.R;
+                    ball.VelY = Math.Abs(ball.VelY);
+                }
+                else if (ball.Y + ball.R >= boardY)
+                {
+                    ball.Y = boardY - ball.R;
+                    ball.VelY = -Math.Abs(ball.VelY);
+                }
             }
         }
 
@@ -109,16 +144,13 @@ namespace BusinessLogic
 
                     double dist = Math.Sqrt(dist2);
 
-                    // Wektor jednostkowy A→B
                     double nx = dx / dist;
                     double ny = dy / dist;
 
-                    // Prędkość względna wzdłuż normalnej
                     double dvx  = a.VelX - b.VelX;
                     double dvy  = a.VelY - b.VelY;
                     double vRel = dvx * nx + dvy * ny;
 
-                    // Jeśli kule już się oddalają — pomijamy
                     if (vRel <= 0) continue;
 
                     double ma = a.Mass, mb = b.Mass;

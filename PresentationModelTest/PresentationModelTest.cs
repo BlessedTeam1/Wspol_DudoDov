@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PresentationModelTest
 {
-    internal class FakeBall : Iballs
+    internal class FakeBall : IBalls
     {
         private double _x;
         private double _y;
@@ -26,15 +26,18 @@ namespace PresentationModelTest
         }
 
         public double R { get; set; } = 15;
+        public double Mass { get; set; } = 1.0;
+        public double VelX { get; set; }
+        public double VelY { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void Move(double boardX, double boardY) { }
+        public void Start(System.Threading.CancellationToken token) { }
     }
 
     internal class FakeLogicApi : LogicAbsApi
     {
-        private readonly ObservableCollection<Iballs> _balls = new ObservableCollection<Iballs>();
+        private readonly ObservableCollection<IBalls> _balls = new ObservableCollection<IBalls>();
 
         public bool StartCalled { get; private set; }
         public bool StopCalled { get; private set; }
@@ -42,7 +45,7 @@ namespace PresentationModelTest
         public double LastBoardY { get; private set; }
         public int LastCount { get; private set; }
 
-        public override ObservableCollection<Iballs> GetBalls() => _balls;
+        public override ObservableCollection<IBalls> GetBalls() => _balls;
 
         public override void StartSimulation(double boardX, double boardY, int ballCount)
         {
@@ -57,8 +60,8 @@ namespace PresentationModelTest
             StopCalled = true;
         }
 
-        public void AddFakeBall(Iballs ball) => _balls.Add(ball);
-        public void RemoveFakeBall(Iballs ball) => _balls.Remove(ball);
+        public void AddFakeBall(IBalls ball) => _balls.Add(ball);
+        public void RemoveFakeBall(IBalls ball) => _balls.Remove(ball);
     }
 
     [TestClass]
@@ -226,7 +229,6 @@ namespace PresentationModelTest
             var fakeLogic = new FakeLogicApi();
             var model = new ModelApi(fakeLogic);
 
-            // FIX: Initialize the board dimensions so ModelApi can compute scale correctly.
             model.Start(800, 600, 0);
 
             fakeLogic.AddFakeBall(new FakeBall { R = 20 });
