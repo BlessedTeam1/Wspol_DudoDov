@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -32,7 +33,7 @@ namespace PresentationModelTest
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void Start(System.Threading.CancellationToken token) { }
+        public void Start(System.Threading.CancellationToken token, Action<IBalls> loggerAction = null) { }
     }
 
     internal class FakeLogicApi : LogicAbsApi

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
@@ -19,8 +20,7 @@ namespace BusinessLogicTest
 
         public event PropertyChangedEventHandler PropertyChanged { add { } remove { } }
 
-        // Исправлено: добавлено имя переменной "token"
-        public void Start(CancellationToken token) { }
+        public void Start(CancellationToken token, Action<IBalls> loggerAction = null) { }
     }
 
     internal class FakeDataApi : DataAbsApi
@@ -50,6 +50,9 @@ namespace BusinessLogicTest
             RemoveBallCallCount++;
             _balls.Remove(ball);
         }
+
+        public override void LogBallState(IBalls ball) { }
+        public override void Dispose() { }
     }
 
     [TestClass]
@@ -215,4 +218,4 @@ namespace BusinessLogicTest
                 $"Expected GetBalls >= 1, got {fakeData.GetBallsCallCount}");
         }
     }
-} // <-- Эта скобка была потеряна
+}

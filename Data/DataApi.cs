@@ -3,11 +3,14 @@ using System.Collections.ObjectModel;
 
 namespace Data
 {
-    public abstract class DataAbsApi
+    public abstract class DataAbsApi : IDisposable
     {
         public abstract IBalls AddBall(double boardX, double boardY, double r, double mass, double velX = 0, double velY = 0);
         public abstract void RemoveBall(IBalls ball);
         public abstract ObservableCollection<IBalls> GetBalls();
+
+        public abstract void LogBallState(IBalls ball);
+        public abstract void Dispose();
 
         public static DataAbsApi CreateApi() => new DataApi();
     }
@@ -16,6 +19,7 @@ namespace Data
     {
         private readonly ObservableCollection<IBalls> _balls = new ObservableCollection<IBalls>();
         private readonly Random _random = new Random();
+        private readonly Logger _logger = new Logger();
 
         public override IBalls AddBall(double boardX, double boardY, double r, double mass, double velX = 0, double velY = 0)
         {
@@ -38,5 +42,15 @@ namespace Data
         public override void RemoveBall(IBalls ball) => _balls.Remove(ball);
 
         public override ObservableCollection<IBalls> GetBalls() => _balls;
+
+        public override void LogBallState(IBalls ball)
+        {
+            _logger.Log(ball);
+        }
+
+        public override void Dispose()
+        {
+            _logger.Dispose();
+        }
     }
 }

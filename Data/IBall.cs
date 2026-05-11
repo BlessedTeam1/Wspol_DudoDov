@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace Data
         double Mass { get; }
         double VelX { get; set; }
         double VelY { get; set; }
-        void Start(CancellationToken token);
+        void Start(CancellationToken token, Action<IBalls> loggerAction = null);
     }
 
     internal class Ball : IBalls
@@ -61,20 +63,33 @@ namespace Data
             _x = x; _y = y; _r = r; _mass = mass; _velX = velX; _velY = velY;
         }
 
-        // Многопоточность на уровне ДАННЫХ (выполняем требование чеклиста)
-        public async void Start(CancellationToken token)
+        public async void Start(CancellationToken token, Action<IBalls> loggerAction = null)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var logTimer = new Stopwatch();
+            logTimer.Start();
+
             while (!token.IsCancellationRequested)
             {
+                double deltaSeconds = stopwatch.Elapsed.TotalSeconds;
+                stopwatch.Restart();
+
                 lock (_sync)
                 {
-                    _x += _velX;
-                    _y += _velY;
+                    _x += _velX * deltaSeconds * 60;
+                    _y += _velY * deltaSeconds * 60;
                 }
 
-                // Уведомляем UI об изменениях
                 OnPropertyChanged(nameof(X));
                 OnPropertyChanged(nameof(Y));
+
+                if (loggerAction != null && logTimer.ElapsedMilliseconds > 100)
+                {
+                    loggerAction(this);
+                    logTimer.Restart();
+                }
 
                 try
                 {

@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -55,13 +55,13 @@ namespace BusinessLogic
             _cancellationTokenSource = new CancellationTokenSource();
             var token = _cancellationTokenSource.Token;
 
-            // Запускаем многопоточность для каждого шара
+            // Запускаем расчет движения для каждого шара
             foreach (var ball in _dataApi.GetBalls())
             {
-                ball.Start(token);
+                ball.Start(token, _dataApi.LogBallState);
             }
 
-            // Таск для проверки коллизий и границ
+            // Основной цикл симуляции для проверки столкновений
             _simulationTask = Task.Run(() => SimulationLoop(boardX, boardY, token));
         }
 
@@ -89,12 +89,17 @@ namespace BusinessLogic
                     _gate.Release();
                 }
 
-                try { await Task.Delay(16, token).ConfigureAwait(false); }
-                catch (OperationCanceledException) { break; }
+                try
+                {
+                    await Task.Delay(16, token).ConfigureAwait(false);
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
             }
         }
 
-        // Логика отскока от стен перенесена сюда (выполняем требование чеклиста)
         private static void CheckBoundaries(ObservableCollection<IBalls> balls, double boardX, double boardY)
         {
             foreach (var ball in balls)
@@ -123,7 +128,6 @@ namespace BusinessLogic
             }
         }
 
-        // Zderzenia sprężyste: https://en.wikipedia.org/wiki/Elastic_collision
         private static void ResolveCollisions(ObservableCollection<IBalls> balls)
         {
             int n = balls.Count;
@@ -144,18 +148,22 @@ namespace BusinessLogic
 
                     double dist = Math.Sqrt(dist2);
 
+                    // Нормализованный вектор столкновения
                     double nx = dx / dist;
                     double ny = dy / dist;
 
+                    // Относительная скорость
                     double dvx  = a.VelX - b.VelX;
                     double dvy  = a.VelY - b.VelY;
                     double vRel = dvx * nx + dvy * ny;
 
+                    // Если шары уже разлетаются, ничего не делаем
                     if (vRel <= 0) continue;
 
                     double ma = a.Mass, mb = b.Mass;
                     double impulse = 2 * vRel / (ma + mb);
 
+                    // Применение импульса (сохранение импульса)
                     a.VelX -= impulse * mb * nx;
                     a.VelY -= impulse * mb * ny;
                     b.VelX += impulse * ma * nx;
